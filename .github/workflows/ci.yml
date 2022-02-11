@@ -1,13 +1,17 @@
 name: CI
 on:
   pull_request:
-    branches: [dev]
+    branches: [dev, main]
   push:
-    branches: [dev]
+    branches: [dev, main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+      SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
     steps:
       - uses: actions/checkout@v2
 
@@ -46,9 +50,28 @@ jobs:
           name: build
           path: build
 
-      - name: Deploy to STAGING
-        if: github.event_name == 'push'
-        run: npx surge --project ./build --domain loose-airplane.surge.sh
+      - name: Zip Assets
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          zip -r build.zip ./build
+          zip -r coverage.zip ./coverage
+
+      - name: Create a Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx semantic-release
         env:
-          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_SEMANTIC_PAT }}
+
+      - name: Deploy to STAGING
+        if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+        run: npx surge --project ./build --domain loose-airplane.surge.sh
+
+      - name: Deploy to PRODUCTION
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx surge --project ./build --domain fresh-fact.surge.sh
+
+      - name: Upload Coverage Reports
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx codecov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

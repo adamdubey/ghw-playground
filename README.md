@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Github Workflows & Actions Playground
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A basic Github CI/CD workflow for supporting Front-End Web Applications & Projects.
 
-## Available Scripts
+## Workflow Overview
 
-In the project directory, you can run:
+1. Create a new `feature branch` from `dev`
+2. Make changes, Run Unit tests, Iterate
+3. Submit a PR
+4. CI Workflow runs, if checks and tests pass, merge into `dev` and deploy to `STAGING` environment
+5. A new Pull Request from `dev` into `main` is created
+6. CI Workflow runs, if checks and tests pass, merge into `main` and deploy to `PRODUCTION` environment
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Quick Start
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+_For running the React.js application locally:_
 
-### `npm test`
+```sh
+# Install dependencies
+npm install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Start the app
+npm run start
 
-### `npm run build`
+# in browser, visit http://localhost:3000
+# to STOP, Ctrl+C in Terminal
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies & Frameworks
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [Codecov](https://app.codecov.io/)
+- [CommitLint](https://github.com/conventional-changelog/commitlint)
+- [Commitizen](https://github.com/commitizen/cz-cli)
+- [Create React App](https://reactjs.org/docs/create-a-new-react-app.html)
+- [Husky](https://typicode.github.io/husky/#/)
+- [Github Workflows](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
+- [Prettier](https://prettier.io/)
+- [React](https://reactjs.org/)
+- [Semantic Release](https://github.com/semantic-release/semantic-release)
+- [Slack](https://slack.com/)
+- [Surge](https://surge.sh/)
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Endpoints
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![](https://github.com/adamdubey/ghw-playground/workflows/CI/badge.svg?branch=dev&event=push)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Staging](loose-airplane.surge.sh)
+- [Production](fresh-fact.surge.sh)

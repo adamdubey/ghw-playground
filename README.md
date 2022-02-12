@@ -50,5 +50,5 @@ npm run start
 
 ![](https://github.com/adamdubey/ghw-playground/workflows/CI/badge.svg?branch=dev&event=push)
 
-- [Staging](loose-airplane.surge.sh)
-- [Production](fresh-fact.surge.sh)
+- [Staging](http://loose-airplane.surge.sh)
+- [Production](http://fresh-fact.surge.sh)
